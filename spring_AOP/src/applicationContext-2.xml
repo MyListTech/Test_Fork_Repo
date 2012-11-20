@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+           
+    <!-- 先把两个Bean创建起来 -->
+    <bean id="userManager" class="com.pugwoo.UserManagerImpl" />
+    <bean id="checkAspect2" class="com.pugwoo.CheckAspect2" />
+    
+    <!-- 配置AOP -->
+    <aop:config>
+        <!-- 定义一个切面,id自己随便取，ref指定使用那个类作为切面Aspect -->
+        <aop:aspect id="checkAspect" ref="checkAspect2">
+             <!-- 定义一个Pointcut，pointcut中指定一些joinpoint ，id自己随便取-->
+             <!-- 关于expression的更多信息，请参考中文参考手册6.2.3.4节 -->
+             <aop:pointcut id="addMethod" expression="execution(* add*(..))" />
+             <!-- <aop:pointcut id="addAddMethod" expression="execution(* com.pugwoo.*.add*(..)) || execution(* com.pugwoo.*.del*(..))"/> --> 
+             
+             <!-- 定义一个Advice，其中的method即该Aspect对象中的某个方法
+                                                还有after around和throws等
+             -->
+             <aop:before method="checkSecurity" pointcut-ref="addMethod"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

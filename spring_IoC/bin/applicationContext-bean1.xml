@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+    
+    <!-- 配置类Bean1，其中id名自取，class为要生成的类 ，
+         scope属性可指示只new一次(singleton)还是一取一new(prototype)-->
+    <bean id="bean1" class="com.pugwoo.bean.Bean1" scope="singleton">
+    
+      <!-- name指定bean1对象中的setter方法对应的名称
+                             通过value为数据设值   它会自动进行类型转换，适合非容器类型 -->
+      <property name="strValue" value="Hello"/>
+      <property name="intValue" value="1234"/>
+      
+      <!-- 设置List对象 -->
+      <property name="listValue">
+        <list>
+          <value>list1</value>
+          <value>list2</value>
+          <!-- 这里也可以是ref 或 bean等其他的Object -->
+        </list>
+      </property>
+      
+      <!-- 设置Set对象 -->
+      <property name="setValue">
+        <set>
+          <value>set1</value>
+          <value>set2</value>
+        </set>
+      </property>
+      
+      <!-- 设置数组对象，它和List是一样的 -->
+      <property name="arrValue">
+        <list>
+          <value>array1</value>
+          <value>array2</value>
+        </list>
+      </property>
+      
+      <!-- 设置Map对象 -->
+      <property name="mapValue">
+        <map>
+          <!-- map的条目用entry表示 -->
+          <entry key="key1" value="map1"></entry>
+          <entry key="key2" value="map2"></entry>
+        </map>
+      </property>
+      
+      <!-- 设置Properties对象 -->
+      <property name="properties">
+          <props>
+              <prop key="prop1">value1</prop><!-- key和值都只能是String -->
+              <prop key="prop2">value2</prop>
+              <prop key="prop3">value3</prop>
+          </props>
+      </property>
+    </bean>
+</beans>

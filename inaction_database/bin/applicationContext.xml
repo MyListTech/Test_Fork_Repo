@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+   
+   <!-- 配置DBCP连接池的数据源 -->
+   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+       <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+       <property name="url" value="jdbc:mysql://localhost/inaction_database" />
+       <property name="username" value="root"/>
+       <property name="password" value="root"/>
+       <property name="initialSize" value="5" />
+       <property name="maxActive" value="10" />
+       <!-- 其它配置属性详见http://blog.csdn.net/fengyifei11228/archive/2010/09/26/5906794.aspx -->
+   </bean>
+   
+   <!-- 配置JdbcTemplate -->
+   <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+       <property name="dataSource" ref="dataSource" />
+   </bean>
+   
+   <!-- 下面配置Hibernate ,先配置一个SessionFactory，再创建hibernateTemplate-->
+   <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+       <property name="dataSource" ref="dataSource" />
+       <property name="mappingResources">
+           <list>
+               <value>pugwoo/User.hbm.xml</value>
+<!--               <value>更多的hbm.xml</value>-->
+           </list>
+       </property>
+       <property name="hibernateProperties">
+           <props>
+               <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+           </props>
+       </property>
+   </bean>
+   
+   <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+       <property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
+</beans>

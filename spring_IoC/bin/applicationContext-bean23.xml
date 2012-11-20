@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+    
+    <bean id="bean3" class="com.pugwoo.bean.Bean3">
+        <property name="name" value="This is object of Bean3." />
+    </bean>
+    
+    <!-- 使用ref属性为对象赋值，其中ref指的是在配置applicationContext中存在的某个id -->
+    <bean id="bean2" class="com.pugwoo.bean.Bean2">
+        <property name="bean3" ref="bean3"/>
+    </bean>
+</beans>

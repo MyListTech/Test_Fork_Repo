@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+   <bean id="username" class="java.lang.String">
+       <!-- 试用构造器注入值 -->
+       <constructor-arg value="pugwoo"></constructor-arg>
+   </bean>
+  
+   <bean id="user1" class="com.pugwoo.User">
+       <!-- 直接注入值,相见Spring_basic项目各种类型的注值 -->
+       <property name="password" value="123456" />
+       <!-- 引用其它bean -->
+       <property name="username" ref="username"></property>
+   </bean>
+   
+   <!-- 通过构造器构造User -->
+   <bean id="user2" class="com.pugwoo.User">
+       <constructor-arg index="0" value="nick"/>
+       <constructor-arg index="1" value="1234567"/>
+       <!-- 或者可以这样写 -->
+<!--       <constructor-arg>-->
+<!--           <value>nick</value> 这里也可以是ref -->
+<!--           <value>1234567</value>-->
+<!--       </constructor-arg>-->
+   </bean>
+   
+   <!-- 通过静态函数获取User(也可以用动态的，但要用factory-bean指向一个已经建立的工厂) -->
+   <bean id="user3" class="com.pugwoo.User" factory-method="getUser">
+       <!-- 注意，constructor-arg都是用来传递参数的 -->
+       <constructor-arg index="0" value="karen"/>
+       <constructor-arg index="1" value="aaaaaa"/>
+   </bean>
+   
+   <!-- 创建random bean，每次拿都new一个新的 -->
+   <bean id="random" class="com.pugwoo.random.Random" scope="prototype"/>
+   <bean id="randomFactory" class="com.pugwoo.random.AbstractRandomFactory">
+       <!-- 重要：使用lookup-method将原有方法替换成指定的bean -->
+       <lookup-method name="createRandom" bean="random"/>
+   </bean>
+   
+   <!-- 这是一个替换的新对象，实现了MethodReplacer接口 -->
+   <bean id="newHello" class="com.pugwoo.hello.NewHello" />
+   <bean id="hello" class="com.pugwoo.hello.Hello">
+       <!-- 把sayHello替换掉 -->
+       <replaced-method name="sayHello" replacer="newHello" />
+   </bean>
+</beans>
