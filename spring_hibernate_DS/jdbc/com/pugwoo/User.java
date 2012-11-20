@@ -1,4 +1,4 @@
-package pugwoo;
+package com.pugwoo;
 
 public class User {
 
