@@ -8,10 +8,11 @@
            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
 	
-	<!-- 配置SessionFactory -->
+	<!-- 配置SessionFactory，这里用到的是LocalSessionFactoryBean -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="configLocation">
-			<value>classpath:hibernate.cfg.xml</value> <!-- 注意这个值要加上classpath -->
+		    <!-- 注意这个值要加上classpath -->
+			<value>classpath:hibernate.cfg.xml</value> 
 		</property>
 	</bean>
 	
@@ -27,7 +28,7 @@
 		</property>
 	</bean>
 	
-	<!-- 那些类那些方法使用事务 -->
+	<!-- 哪些类哪些方法使用事务 -->
 	<aop:config>
 		<aop:pointcut id="allManagerMethod" expression="execution(* com.pugwoo.manager.*.*(..))"/>
 		<aop:advisor pointcut-ref="allManagerMethod" advice-ref="txAdvice"/>
@@ -40,7 +41,19 @@
 			<tx:method name="add*" propagation="REQUIRED"/>
 			<tx:method name="del*" propagation="REQUIRED"/>
 			<tx:method name="modify*" propagation="REQUIRED"/>
-			<tx:method name="*" propagation="REQUIRED" read-only="true"/> <!-- 对于查询，这样可提高性能 -->
+			<!-- 对于查询，这样可提高性能 -->
+			<tx:method name="*" propagation="REQUIRED" read-only="true"/>
 		</tx:attributes>
 	</tx:advice>
+	
+	<!-- 自定义类 -->
+	<bean id="userManager" class="com.pugwoo.manager.UserManagerImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="logManager" ref="logManager"/>
+	</bean>
+	
+	<bean id="logManager" class="com.pugwoo.manager.LogManagerImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
 </beans>
