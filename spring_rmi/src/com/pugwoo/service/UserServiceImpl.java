@@ -15,4 +15,13 @@ public class UserServiceImpl implements UserService {
 		return "hello: " + name;
 	}
 
+	@Override
+	public User getUser() {
+		User user = new User();
+		user.setName("nick");
+		user.setScore(99);
+
+		return user;
+	}
+
 }

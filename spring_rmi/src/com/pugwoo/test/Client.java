@@ -3,6 +3,7 @@ package com.pugwoo.test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.pugwoo.service.User;
 import com.pugwoo.service.UserService;
 
 /**
@@ -21,6 +22,11 @@ public class Client {
 		System.out.println(userService.getInfo());
 
 		System.out.println(userService.sayHello("nick"));
+		
+		// 测试获取一个自定义的结构
+		User user = userService.getUser();
+		System.out.println("user.name:" + user.getName());
+		System.out.println("user.score:" + user.getScore());
 	}
 
 }
