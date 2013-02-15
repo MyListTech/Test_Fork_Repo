@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.lib.spring3.MYECLIPSE_SPRING30_AOP"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.lib.spring3.MYECLIPSE_SPRING30_CORE"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/excavator-1.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/netty-3.2.4.Final.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/curator-framework-1.3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/curator-test-1.3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/curator-client-1.3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/org.apache.commons.lang_2.4.0.v201005080502.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/guava-14.0-rc1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/org.slf4j.api_1.6.1.v20100831-0715.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/zookeeper-3.4.5.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/curator-x-discovery-1.3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/curator-recipes-1.3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/org.apache.commons.collections_3.2.0.v201005080500.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hessian-4.0.7.jar"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>
