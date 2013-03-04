@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="model.Blog">
+	    <id name="id">
+	        <!-- 注意这里别用native，否则会导致未提交就已插入，结果造成回滚不了，可能Spring就没有该问题 -->
+	        <generator class="increment" />
+	    </id>
+	    <property name="title" />
+	    <property name="publishDate" />
+	    <property name="content" />
+	    <many-to-one name="author" />
+	</class>
+</hibernate-mapping>

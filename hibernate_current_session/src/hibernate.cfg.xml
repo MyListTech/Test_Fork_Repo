@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="myeclipse.connection.profile">MySQL</property>
+		
+		<property name="connection.url">
+			jdbc:mysql://127.0.0.1:3306/hibernate_current_session
+		</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		
+		<property name="connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		<property name="dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+		
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<property name="hibernate.show_sql">true</property>
+		
+		<!-- 找到其它配置文件  这个必须放在末尾-->
+		<mapping resource="com/pugwoo/domain/User.hbm.xml" />
+		<mapping resource="com/pugwoo/domain/Log.hbm.xml" />
+	</session-factory>
+
+</hibernate-configuration>

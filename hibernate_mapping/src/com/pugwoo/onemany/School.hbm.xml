@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.pugwoo.onemany.School">
+	    <id name="id">
+	        <generator class="increment" />
+	    </id>
+	    <property name="schoolName" />
+	    <!-- 设置级联 -->
+	    <set name="students" cascade="all">
+	        <!-- 这个列如果和student的列一样，则合并为一列 -->
+			<key column="schoolid"/>
+			<!-- 重要，schoolid列将存到Student表中 -->
+			<one-to-many class="com.pugwoo.onemany.Student"/>
+		</set>
+	</class>
+</hibernate-mapping>

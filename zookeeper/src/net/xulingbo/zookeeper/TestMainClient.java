@@ -19,10 +19,10 @@ public class TestMainClient implements Watcher {
 	int sessionTimeout = 10000;
 	protected String root;
 
+	// 主要初始化ZooKeeper对象
 	public TestMainClient(String connectString) {
 		if (zk == null) {
 			try {
-
 				String configFile = this.getClass().getResource("/").getPath()
 						+ "net/xulingbo/zookeeper/log4j/log4j.xml";
 				DOMConfigurator.configure(configFile);
@@ -30,6 +30,7 @@ public class TestMainClient implements Watcher {
 				zk = new ZooKeeper(connectString, sessionTimeout, this);
 				mutex = new Integer(-1);
 			} catch (IOException e) {
+				e.printStackTrace();
 				zk = null;
 			}
 		}
@@ -39,5 +40,13 @@ public class TestMainClient implements Watcher {
 		synchronized (mutex) {
 			mutex.notify();
 		}
+	}
+	
+	// 单元测试
+	public static void main(String[] args) throws InterruptedException {
+		@SuppressWarnings("unused")
+		TestMainClient client = new TestMainClient("127.0.0.1:2181");
+		Thread.sleep(1000);
+		System.out.println(TestMainClient.zk);
 	}
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="model.User" table="tb_user">
+	    <id name="id">
+	        <!-- 注意这里别用native，否则会导致未提交就已插入，结果造成回滚不了，可能Spring就没有该问题 -->
+	        <generator class="increment" />
+	    </id>
+	    <discriminator column="sub_type" />
+	    <property name="name" />
+	    <subclass name="model.Student">
+	        <property name="number" />
+	        <many-to-one name="school" />
+	    </subclass>
+	</class>
+	
+	<class name="model.School">
+	    <id name="id">
+	        <generator class="increment" />
+	    </id>
+	    <property name="name" />
+	    <many-to-one name="address" />
+	</class>
+	
+	<class name="model.Address">
+	    <id name="id">
+	        <generator class="increment" />
+	    </id>
+	    <property name="name" />
+	</class>
+	
+	<class name="model.CompositeId">
+	    <composite-id>
+	        <key-property name="id" />
+	        <key-property name="name" />
+	    </composite-id>
+	</class>
+</hibernate-mapping>

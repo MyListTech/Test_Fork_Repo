@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.pugwoo.oneone.Person" table="t_person">
+		<id name="id">
+			<!-- person的主键来源idCard，也就是共享idCard的主键 -->
+			<generator class="foreign">
+				<param name="property">idCard</param>
+			</generator>
+		</id>
+		<property name="name" />
+		<!--
+			one-to-one标签的含义，指示hibernate怎么加载它的关联对象，默认根据主键加载， constrained="true"，
+			表明当前主键上存在一个约束，person的主键作为外键参照了idCard
+		-->
+		<one-to-one name="idCard" constrained="true" />
+	</class>
+</hibernate-mapping>

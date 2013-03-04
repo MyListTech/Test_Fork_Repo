@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.pugwoo.extend.Generic">
+	    <id name="id">
+	        <!-- 注意这里别用native，否则会导致未提交就已插入，结果造成回滚不了，可能Spring就没有该问题 -->
+	        <generator class="increment" />
+	    </id>
+	    <!-- 共用一个表 ，需要discriminator，必须放在property之前-->
+<!--	    <discriminator column="sub_type" />-->
+
+	    <property name="generic" />
+	    
+	    <!-- 共用一个表 -->
+<!--	    <subclass name="com.pugwoo.extend.A" discriminator-value="A">-->
+<!--	        <property name="a" />-->
+<!--	    </subclass>-->
+<!--	    <subclass name="com.pugwoo.extend.B" discriminator-value="B">-->
+<!--	        <property name="b" />-->
+<!--	    </subclass>-->
+	    
+	    <!-- 每个具体类一个表 -->
+<!--	    <union-subclass name="com.pugwoo.extend.A">-->
+<!--	        <property name="a" />-->
+<!--	    </union-subclass>-->
+<!--	    <union-subclass name="com.pugwoo.extend.B">-->
+<!--	        <property name="b" />-->
+<!--	    </union-subclass>-->
+
+        <!-- 每个子类一个表 -->
+<!--        <joined-subclass name="com.pugwoo.extend.A">-->
+<!--            <key column="id" foreign-key="id"/>-->
+<!--             重点：generic要在这里再定义一次 -->
+<!--            <property name="generic"/>-->
+<!--            <property name="a" />-->
+<!--        </joined-subclass>-->
+<!--        <joined-subclass name="com.pugwoo.extend.B">-->
+<!--            <key column="id" foreign-key="id"/>-->
+<!--            <property name="generic"/>-->
+<!--            <property name="b" />-->
+<!--        </joined-subclass>-->
+	</class>
+</hibernate-mapping>

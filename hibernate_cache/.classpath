@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hibernate3_core"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_3_CORE"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_3_EXTRAS"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_3_EM"/>
+	<classpathentry kind="lib" path="I:/java/lib/ehcache-1.2.3.jar"/>
+	<classpathentry kind="lib" path="I:/java/lib/org.apache.commons.logging_1.0.4.v200904062259.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.20-bin.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

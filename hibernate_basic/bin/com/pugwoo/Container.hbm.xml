@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.pugwoo.Container" table="container">
+
+		<id name="id">
+			<generator class="uuid" />
+		</id>
+
+		<!--Set类型映射,默认存到表setValue中-->
+		<set name="setValue" table="setValue">
+			<!-- 该id是表setValue中的列，其值指向container表id -->
+			<key column="id" />
+			<!-- 默认列名是elt，表示set的值，type指定set包含的数据类型 -->
+			<element type="java.lang.String" column="elt" />
+		</set>
+
+		<!-- List类型映射 -->
+		<list name="listValue" table="listValue">
+			<key column="id" /> <!-- 这个是引用container的主键 -->
+			<index column="listValue_id" /> <!-- 设置List的主键 -->
+			<element type="java.lang.String" column="elt" />
+		</list>
+
+		<!--Array类型映射-->
+		<array name="arrayValue" table="arrayValue">
+			<key column="id" /> <!-- 这个是引用container的主键 -->
+			<list-index column="arrayValue_id" />
+			<element type="java.lang.String" column="elt" />
+		</array>
+
+		<!--Map类型映射-->
+		<map name="mapValue" table="mapValue">
+			<key column="id" />
+			<!--配置键值对-->
+			<map-key column="mapValue_id" type="java.lang.String" />
+			<element type="java.lang.String" column="elt" />
+		</map>
+
+		<!--Bag类型映射-->
+		<bag name="bagValue" table="bagValue">
+			<key column="id" />
+			<element type="string" column="bagValue" />
+		</bag>
+	</class>
+</hibernate-mapping>

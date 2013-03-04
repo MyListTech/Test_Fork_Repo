@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+
+<hibernate-configuration>
+	<!-- 一个session factory对应一个数据库 -->
+<session-factory>
+	<property name="myeclipse.connection.profile">MySQL</property>
+
+
+	<!-- 设置数据库连接地址，其中数据库必须自己建立 -->
+	<property name="connection.url">
+		jdbc:mysql://127.0.0.1:3306/hibernate_mapping
+	</property>
+	<property name="connection.username">root</property>
+	<property name="connection.password">root</property>
+
+	<!-- 必须引入mysql for java包 -->
+	<property name="connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
+	<property name="dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
+
+	<!-- 下面配置为可选配置 -->
+	<!-- 设置这个，Hibernate将自动建表，并且只有在改变对象时重新建表 -->
+	<!-- 更改的表的旧信息将继续保留，如Google -->
+	<property name="hibernate.hbm2ddl.auto">update</property>
+
+	<property name="hibernate.show_sql">true</property>
+
+	<!-- 找到其它配置文件  这个必须放在末尾-->
+	<mapping resource="com/pugwoo/onemany/School.hbm.xml" />
+	<mapping resource="com/pugwoo/onemany/Student.hbm.xml" />
+	<mapping resource="com/pugwoo/oneone/Person.hbm.xml" />
+	<mapping resource="com/pugwoo/oneone/IdCard.hbm.xml" />
+	<mapping resource="com/pugwoo/manymany/Product.hbm.xml" />
+	<mapping resource="com/pugwoo/manymany/Order.hbm.xml" />
+	<mapping resource="com/pugwoo/extend/Generic.hbm.xml" />
+
+</session-factory>
+
+</hibernate-configuration>

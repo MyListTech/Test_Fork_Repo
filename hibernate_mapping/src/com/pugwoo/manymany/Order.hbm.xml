@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <!-- 注意，这里得给表设个不同于order的表名，因为order是关键字 -->
+	<class name="com.pugwoo.manymany.Order" table="tb_order">
+	    <id name="id">
+	        <!-- 注意这里别用native，否则会导致未提交就已插入，结果造成回滚不了，可能Spring就没有该问题 -->
+	        <generator class="native" />
+	    </id>
+	    <property name="name" />
+	    <property name="total" />
+	    
+	    <!-- 重点：many-to-many设置，设置新表名称 -->
+	    <set name="products" table="tb_products">
+	        <!-- 自定义对应的column名称 -->
+	        <key column="order_id" />
+	        <many-to-many class="com.pugwoo.manymany.Product" column="product_id"/>
+	    </set>
+	</class>
+</hibernate-mapping>

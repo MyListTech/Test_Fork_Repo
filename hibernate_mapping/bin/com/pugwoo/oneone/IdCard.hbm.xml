@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.pugwoo.oneone.IdCard" table="t_idcard">
+		<id name="id">
+			<generator class="increment"/>
+		</id>
+		<property name="cardNo"/>
+		<one-to-one name="person"/>
+	</class>
+</hibernate-mapping>

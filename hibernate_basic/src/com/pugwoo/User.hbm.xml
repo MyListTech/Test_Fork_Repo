@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- package属性指定下面类对应的包，如果不指定package，则需要在class.name中指定类名 -->
+<hibernate-mapping>
+	<!-- class标签将对象映射成数据库表  可用table属性指定表名 -->
+	<!-- 当表个数多时，推荐使用 dynamic-insert 和 dynamic-update-->
+    <class name="com.pugwoo.User" dynamic-insert="true" dynamic-update="true">
+    	<!-- 设置数据库表主键   可用column属性指定列名-->
+        <id name="id" column="id">
+        	<!-- 生成主键策略，常用有uuid,native,assigned,increment -->
+        	<generator class="increment"/>
+        </id>
+        
+        <!-- hibernate还可以映射复合主键，不过由于代理主键的存在，这个不常用 -->
+          
+        <!-- 通过property将普通属性映射成表字段 -->
+        <property name="name" not-null="true"/>
+        <property name="password" not-null="true" length="20"/>
+        <property name="birth"/>
+        <property name="age"/>
+    </class>
+</hibernate-mapping>
