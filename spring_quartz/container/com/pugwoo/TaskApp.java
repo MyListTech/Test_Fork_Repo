@@ -18,7 +18,7 @@ public class TaskApp {
 		
 		@SuppressWarnings("unused")
 		ApplicationContext context = new ClassPathXmlApplicationContext(
-				"/quartz.xml");
+				"/quartz_container.xml");
 		
 		// 这时候调度就已经开始执行了
 		

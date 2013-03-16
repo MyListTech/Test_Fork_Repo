@@ -1,3 +1,5 @@
+强烈建议使用【1.x版本】
+
 Quartz表达式
 
 包括7个字段：秒 分 小时 月内日期 月 周内日期 年(可选)
@@ -19,8 +21,8 @@ Quartz表达式
 【重要概念】
 Job：是一个接口，只有一个方法void execute(JobExecutionContext context)，开发者实现该接口定义运行任务
     JobExecutionContext类提供了调度上下文的各种信息。Job运行时的信息保存在JobDataMap实例中；
-JobDetail：Quartz在每次执行Job时，都重新创建一个Job实例
-Trigger：是一个类，描述触发Job执行的时间触发规则。
+JobDetail：Quartz在每次执行Job时，都重新创建一个Job实例。由name和group标识
+Trigger：是一个类，描述触发Job执行的时间触发规则。由name和group标识
 Scheduler：代表一个Quartz的独立运行容器，Trigger和JobDetail可以注册到Scheduler中，
         两者在Scheduler中拥有各自的组及名称，组及名称是Scheduler查找定位容器中某一对象的依据，
    Trigger的组及名称必须唯一，JobDetail的组和名称也必须唯一（但可以和Trigger的组和名称相同，因为它们是不同类型的）。
