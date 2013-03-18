@@ -47,5 +47,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <input type="submit" />
       </form>
     </p>
+    
+    <h3>复杂的表单（数组、form）</h3>
+    <p><a href="<%=basePath%>cplx_form" target="_blank">复杂的表单</a></p>
   </body>
 </html>
