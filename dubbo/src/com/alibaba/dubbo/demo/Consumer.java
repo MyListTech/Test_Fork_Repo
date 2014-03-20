@@ -11,9 +11,16 @@ public class Consumer {
 		context.start();
 
 		DemoService demoService = (DemoService) context.getBean("demoService"); // get service invocation proxy
-		String hello = demoService.sayHello("world"); // do invoke!
+		
+		long start = System.currentTimeMillis();
+		for(int i = 0; i < 100000; i++) {
+			String hello = demoService.sayHello("world"); // do invoke!
 
-		System.out.println(hello); // cool, how are you~
+			System.out.println(hello); // cool, how are you~
+		}
+		
+		long end = System.currentTimeMillis();
+		System.out.println((end - start) + "ms");
 	}
 
 }

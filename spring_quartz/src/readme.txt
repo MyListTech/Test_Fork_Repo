@@ -12,3 +12,5 @@ jobDetail有个JobDataMap可以用于附带数据，在job execute时通过JobEx
 
 有个jobListener可以在job执行的前后做些事情，可以利用这个在1个job里trigger另一个job
 
+【注意】2013年7月17日 09:51:44
+对于任何StdSchedulerFactory对象，它每次getScheduler()获取到的scheduler是同一个对象<单例>!
