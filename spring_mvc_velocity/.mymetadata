@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="spring_mvc_velocity"
+  id="myeclipse.1397794706057"
+  context-root="/spring_mvc_velocity"
+  j2ee-spec="5.0"
+  archive="spring_mvc_velocity.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
